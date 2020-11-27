@@ -1,16 +1,18 @@
 import axios from "axios";
-import { getToken } from "./auth";
+
+// axios.defaults.headers.common['Access-Control-Request-Method'] = "POST, GET, PUT, DELETE"
 
 const api = axios.create({
-  baseURL: "https://enigmatic-springs-21467.herokuapp.com:443/api/"
+  baseURL: 'http://enigmatic-springs-21467.herokuapp.com/api',
+  timeout: 3000,
+  headers: {'Content-Type' : 'application/x-www-form-urlencoded', 
+             'Common': {
+              'Access-Control-Request-Method' : "POST, GET, PUT, DELETE",
+              'Access-Control-Allow-Origin': '*'
+             }
+          } 
 });
 
-api.interceptors.request.use(async config => {
-  const token = getToken();
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
+
 
 export default api;

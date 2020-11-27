@@ -1,4 +1,4 @@
-export const TOKEN_KEY = "@portfolio-investment-Token";
+export const TOKEN_KEY = null;
 export const isAuthenticated = () => localStorage.getItem(TOKEN_KEY) !== null;
 export const getToken = () => localStorage.getItem(TOKEN_KEY);
 export const login = token => {
